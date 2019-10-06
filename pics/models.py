@@ -8,11 +8,18 @@ description = '''Hello world, this is a default description.'''
 class Category(models.Model):
     name = models.CharField(max_length=255)
 
-    def str_category(self):
+    @classmethod
+    def str_category(cls):
         cat = {
-            'name': self.name,
+            'name': cls.name,
         }
         return cat
+
+    def save_category(self):
+        self.save()
+
+    def delete_category(self):
+        self.delete()
 
     def __str__(self):
         return f'Name: {self.name}'
@@ -26,6 +33,12 @@ class Location(models.Model):
 
     def __str__(self):
         return f'Place: {self.place}'
+
+    def save_location(self):
+        self.save()
+
+    def delete_location(self):
+        self.delete()
 
     class Meta:
         db_table = 'location'
@@ -70,6 +83,12 @@ class Image(models.Model):
     def search_by_title(cls, search_term):
         news = cls.objects.filter(title__icontains=search_term)
         return news
+
+    def save_image(self):
+        self.save()
+
+    def delete_image(self):
+        self.delete()
 
     def __repr__(self):
         return f'''
