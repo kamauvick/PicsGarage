@@ -12,13 +12,18 @@ def index(request):
 
 
 def search_results(request):
-    if 'photo' in request.GET and request.GET['photo']:
-        search_term = request.GET('photo')
-        searched_photos = Image.search_by_title(search_term)
-        message = f'Search Term:{search_term}'
+    if 'image' in request.GET and request.GET['image']:
+        search_term = request.GET('image')
+        searched_photos = Image.objects.filter(title__icontains=search_term)
+        print(searched_photos)
+        message = f'{search_term}'
+        params = {
+            'searched_photos': searched_photos,
+            'message': message,
+        }
 
-        return render(request, 'index.html', locals())
+        return render(request, 'search_results.html', params)
 
     else:
         message = 'Ooppss, You did not search for anything.'
-        return render(request, 'index.html', locals())
+        return render(request, 'search_results.html', locals())
