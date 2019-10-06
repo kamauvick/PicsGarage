@@ -13,8 +13,9 @@ def index(request):
 
 def search_results(request):
     if 'image' in request.GET and request.GET['image']:
-        search_term = request.GET('image')
-        searched_photos = Image.objects.filter(title__icontains=search_term)
+        search_term = request.GET.get('image')
+        print(search_term)
+        searched_photos = Image.search_by_title(search_term)
         print(searched_photos)
         message = f'{search_term}'
         params = {
