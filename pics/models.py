@@ -81,7 +81,7 @@ class Image(models.Model):
 
     @classmethod
     def search_by_title(cls, search_term):
-        news = cls.objects.filter(title__icontains=search_term)
+        news = cls.objects.filter(name__icontains=search_term)
         return news
 
     def save_image(self):
