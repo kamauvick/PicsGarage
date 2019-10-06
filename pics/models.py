@@ -29,7 +29,7 @@ class Category(models.Model):
 
 
 class Location(models.Model):
-    place = models.CharField(max_length=50)
+    place = models.CharField(max_length=255)
 
     def __str__(self):
         return f'Place: {self.place}'
@@ -49,7 +49,7 @@ class Image(models.Model):
     description = models.TextField(default=description)
     category = models.ForeignKey(Category, related_name='images', on_delete=models.CASCADE)
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
-    submitted = models.DateField(auto_now_add=True)
+    submitted = models.DateTimeField(auto_now_add=True)
     image_url = models.ImageField(upload_to='images/')
 
     def get_image_information(self):
