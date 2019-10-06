@@ -12,9 +12,6 @@ class TestCategory(TestCase):
     def test_category_instance(self):
         self.assertTrue(isinstance(self.new_category, Category))
 
-    def test_str_category(self):
-        pass
-
     def tearDown(self):
         pass
 
