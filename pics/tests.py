@@ -10,7 +10,19 @@ class TestCategory(TestCase):
         self.new_category = Category(name='cars')
 
     def test_category_instance(self):
-        self.assertTrue(isinstance(self.new_category, Category))
+        pass
+
+    def test_save_category(self):
+        before = Category.objects.count()
+        self.new_category.save_category()
+        after = Category.objects.count()
+        self.assertTrue(before < after)
+
+    def test_delete_category(self):
+        before = Category.objects.count()
+        self.new_category.delete_category()
+        after = Category.objects.count()
+        self.assertTrue(before > after)
 
     def tearDown(self):
         pass
