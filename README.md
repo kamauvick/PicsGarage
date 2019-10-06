@@ -32,13 +32,13 @@ cd PicsGarage
 ##### 2. Create a virtual environment
  Install `Virtualenv` 
 
-   ```python
+   ```prettier
    pip install virtualenv
    ```
 
 To create a virtual environment named `virtual`, run
 
-   ```python
+   ```prettier
    virtualenv virtual
    ```
 To activate the virtual environment we just created, run
@@ -47,39 +47,39 @@ To activate the virtual environment we just created, run
    source virtual/bin/activate
    ```
 
-##### Create a database
-   ```python
+##### 3. Create a database
+You'll need to create a new postgress database, Type the following command to access postgress
+   ```bash
     $ psql
-
    ```
-   ```python
+   Then run the following query to create a new database named ```picsgarage``` 
+   ```prettier
    # create database picsgarage
    ```
 
 
-#####  3.Install dependencies
+#####  4.Install dependencies
 To install the requirements from `requirements.txt` file,
 
-   ```python 
+   ```prettier
    pip install -r requirements.txt
    ```
 
-#####  4.Create Database migrations
+#####  5.Create Database migrations
 Making migrations on postgres using django
 
-```python
+```prettier
 python3 manage.py makemigrations garage
 ```
 
  
-
 then run the command below;
 
  ```bash
  python3 manage.py migrate
  ```
 
-##### 5.Run the app
+##### 6.Run the app
 To run the application on your development machine, 
 
     python3 manage.py runserver
@@ -101,13 +101,11 @@ To run the application on your development machine,
 ## User stories
 >As a user of the application I should be able to:
 
-
-
- - [ ] View different photos that interest me.
-- [ ] Click on a single photo to expand it and also view the details of the photo. The photo details must appear on a modal within the same route as the main page.
-- [ ] Search for different categories of photos. (ie. Travel, Food)
-- [ ]  Copy a link to the photo to share with my friends.
-- [ ] View photos based on the location they were taken.
+- [X] View different photos that interest me.
+- [X] Click on a single photo to expand it and also view the details of the photo. The photo details must appear on a modal within the same route as the main page.
+- [X] Search for different categories of photos. (ie. Travel, Food)
+- [X] Copy a link to the photo to share with my friends.
+- [X] View photos based on the location they were taken.
 
 ## Behaviour Driven Development (BDD)
 
