@@ -9,12 +9,6 @@ class Category(models.Model):
     name = models.CharField(max_length=255)
 
     @classmethod
-    def str_category(cls):
-        cat = {
-            'name': cls.name,
-        }
-        return cat
-
     def save_category(self):
         self.save()
 
@@ -52,21 +46,20 @@ class Image(models.Model):
     submitted = models.DateTimeField(auto_now_add=True)
     image_url = models.ImageField(upload_to='images/')
 
-    def get_image_information(self):
-        info = {
-            'name': self.name,
-            'description': self.description,
-            'category': self.category,
-            'location': self.location,
-            'submitted': self.submitted,
-            'image_url': self.image_url,
-        }
-        return str(info)
-
     def update_image(self, name=name, category=None):
         self.name = name if name else self.name
         self.category = category if category else self.category
         self.save()
+
+    @classmethod
+    def search_by_category(cls, category):
+        images = cls.objects.filter(category__name__icontains=category)
+        return images
+
+    @classmethod
+    def filter_by_location(cls, location):
+        image_location = Image.objects.filter(location__name=location).all()
+        return image_location
 
     @classmethod
     def get_image_by_id(cls, id):
