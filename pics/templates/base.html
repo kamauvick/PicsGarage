@@ -28,7 +28,6 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
-<!--    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">-->
     {% endblock %}
 </head>
 <body>
@@ -36,6 +35,7 @@
 {% endblock %}
 </body>
 {% block scripts %}
+<script src="{% static '/js/copy.js'%}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 {% bootstrap_javascript %}
 {% endblock %}
