@@ -15,12 +15,11 @@
     </div>
     <div class="container">
         <div class="baner-info-w3ls text-left">
-            <h1><a href="index.html">Pics Garage</a></h1>
-            <h6 class="mx-auto mt-4">A collection of my favourite
-                <photos></photos>
+            <h1><a href="/">Pics Garage</a></h1>
+            <h6 class="mx-auto mt-4">A collection of my favourite photos
             </h6>
             <a class="btn btn-primary mt-lg-5 mt-3 agile-link-bnr scroll" href="#about" role="button">Check it out</a>
-            <div class="banner-high-lights text-left">
+            <div class="banner-high-lights text-left">  
                 <div class="rotate">
                     <a href="#about" class="scroll">
                         <span class="fa fa-long-arrow-down"></span>
@@ -30,6 +29,7 @@
         </div>
     </div>
 </section>
+
 <!-- what we do -->
 <section id="about">
     <div class="container">
@@ -43,7 +43,10 @@
                         </button>
                     </div>
                 </div>
-
+                <div class="d-block mx-auto mt-3 p3" style="display:flex;">
+                    <a href="/category"><button class="btn btn-success">Categories</button></a>
+                    <a href="/locale"><button class="btn btn-success">Location</button></a>
+                </div>
             </form>
             <p class="main_p mt-4 mb-4 pt-2 text-center mx-auto">Search photos according to the location or category</p>
         </div>
@@ -62,8 +65,36 @@
 
 
                 {%for image in images %}
-                <div class="col-md-4 gal-img">
-                    <a href="#gal1  "><img src="{{image.image_url.url}}" alt="gallery img" class="img-fluid"></a>
+                <div class="col-md-4 gal-img" data-toggle="modal" data-target="#{{image.id}}">
+                    <a href="#gal1"><img src="{{image.image_url.url}}" alt="gallery img" class="img-fluid"></a>
+                </div>
+
+                <div class="modal fade " id="{{image.id}}" tabindex="-1" role="dialog"
+                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                        <div class="modal-content mcard">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="imageheader">{{image.name}}</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <img src="{{image.image_url.url}}" alt="{{image.name}}" class="img-fluid">
+                                <p class="imgdesc text-center">{{image.description}}</p>
+                                <span class="btn btn-sm btn-success">{{image.category}}</span> <a
+                                    href="locale/{{image.location}}" class="btn btn-sm btn-info">{{image.location}}</a>
+                            </div>
+                            <div class="modal-footer">
+                                <input class="form-control input-lg" type="text"
+                                       value="{{image.image_url.url}}" id="{{image.id}}.url">
+                                <button class="btn btn-success btn-sm" onclick="copy('{{image.id}}.url')">Copy
+                                </button>
+                                <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 {% endfor %}
 
